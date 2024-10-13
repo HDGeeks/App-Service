@@ -85,3 +85,7 @@ variable "acr_image_tag" {
   description = "The tag of the image to use from the Azure Container Registry"
   default     = "95" # Change this to a specific tag if needed
 }
+
+variable "acr_id" {
+  
+}

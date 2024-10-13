@@ -61,4 +61,18 @@ resource "azurerm_app_service" "flask-web-app" {
   app_settings = local.env_variables
 }
 
+resource "azurerm_app_service_slot" "slotDemo" {
+    name                = "staging"
+    location            = var.resource_group_location
+    resource_group_name = var.resource_group_name
+    app_service_plan_id = azurerm_app_service_plan.webapp-plan.id
+    app_service_name    = azurerm_app_service.flask-web-app.name
+}
 
+
+
+resource "azurerm_role_assignment" "acr_pull_assignment" {
+  principal_id         = azurerm_app_service.flask-web-app.identity[0].principal_id  
+  role_definition_name = "AcrPull"
+  scope                = var.acr_id  
+}

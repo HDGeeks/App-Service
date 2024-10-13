@@ -55,6 +55,7 @@ module "webapp" {
   login_server = module.acr.acr_login_server
   user_name = module.acr.acr_admin_username
   password = module.acr.acr_admin_password
+  acr_id = module.acr.acr_id
   
 }
 
@@ -69,7 +70,6 @@ output "user" {
   value = module.acr.acr_admin_username
   
 }
-# output "password" {
-#   value = module.acr.acr_admin_password
-  
-# }
+
+
+

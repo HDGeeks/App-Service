@@ -15,3 +15,8 @@ output "acr_admin_password" {
   description = "The admin password for the ACR."
   //sensitive   = true  # Mark it as sensitive so it's hidden in the output
 }
+
+output "acr_id" {
+  value = azurerm_container_registry.acr.id 
+  
+}
