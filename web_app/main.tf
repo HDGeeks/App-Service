@@ -69,6 +69,11 @@ resource "azurerm_app_service_slot" "slotDemo" {
     app_service_name    = azurerm_app_service.flask-web-app.name
     https_only = true
 
+     identity {
+    type         = "SystemAssigned"
+    #identity_ids = [var.user_assigned_identity_id]
+  }
+
    
   site_config {
     always_on                        = true
@@ -90,9 +95,9 @@ resource "azurerm_role_assignment" "acr_pull_assignment" {
   scope                = var.acr_id  
 }
 
-# resource "azurerm_role_assignment" "staging_acr_pull_assignment" {
-#   principal_id         = azurerm_app_service_slot.slotDemo.identity[0].principal_id  
-#   role_definition_name = "AcrPull"
-#   scope                = var.acr_id  
-# }
+resource "azurerm_role_assignment" "staging_acr_pull_assignment" {
+  principal_id         = azurerm_app_service_slot.slotDemo.identity[0].principal_id  
+  role_definition_name = "AcrPull"
+  scope                = var.acr_id  
+}
 
