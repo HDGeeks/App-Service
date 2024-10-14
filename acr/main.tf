@@ -8,7 +8,7 @@ resource "random_string" "acr_suffix" {
 
 
 resource "azurerm_container_registry" "acr" {
-  name                = "${var.acr_name}${random_string.acr_suffix.result}"  # Make it unique
+  name                = "${var.acr_name}${random_string.acr_suffix.result}"  
   location            = var.location
   resource_group_name = var.resource_group_name
   sku                 = "Standard"
