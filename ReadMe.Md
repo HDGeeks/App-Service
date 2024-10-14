@@ -1,15 +1,4 @@
-# Terraform Workflow
 
-This README outlines the basic Terraform workflow for initializing, planning, applying, and destroying infrastructure.
-
-## Prerequisites
-
-- [Terraform](https://www.terraform.io/downloads.html) installed on your local machine.
-- Properly configured environment with access to the required credentials (e.g., AWS, GCP, Azure).
-
-## Steps
-
-```bash
 # 1. Initialize Terraform and upgrade providers
 
 terraform init -upgrade

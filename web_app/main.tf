@@ -29,10 +29,10 @@ resource "azurerm_app_service_plan" "webapp-plan" {
 
 locals {
  env_variables = {
-   DOCKER_REGISTRY_SERVER_URL            = var.login_server
-   DOCKER_REGISTRY_SERVER_USERNAME       = var.user_name
-   DOCKER_REGISTRY_SERVER_PASSWORD       = var.password
-   WEBSITES_PORT = 5000
+   DOCKER_REGISTRY_SERVER_URL            = "${var.login_server}"
+   DOCKER_REGISTRY_SERVER_USERNAME       = "${var.user_name}"
+   DOCKER_REGISTRY_SERVER_PASSWORD       = "${var.password}"
+   WEBSITES_PORT                         = "${var.port}"
  }
   app_name = "${var.app_name}-${random_string.app_name.result}"
   image_reference = "${var.login_server}/${var.acr_repo}:${var.acr_image_tag}"

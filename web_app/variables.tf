@@ -89,3 +89,9 @@ variable "acr_image_tag" {
 variable "acr_id" {
   
 }
+
+variable "port" {
+  type = string
+  default = "5000"
+  
+}
