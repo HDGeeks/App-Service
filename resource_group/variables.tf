@@ -1,9 +1,9 @@
 variable "resource_group_name" {
   type = string
-  description = "Serverless Demo"
+  default = "Serverless-Demo"
 }
 
-variable "location" {
+variable "resource_group_location" {
   type = string
-  description = "Germany West Central" 
+  default = "Germany West Central" 
 }

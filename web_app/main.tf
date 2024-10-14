@@ -34,7 +34,8 @@ locals {
    DOCKER_REGISTRY_SERVER_PASSWORD       = "${var.password}"
    WEBSITES_PORT                         = "${var.port}"
  }
-  app_name = "${var.app_name}-${random_string.app_name.result}"
+  //app_name = "${var.app_name}-${random_string.app_name.result}"
+  app_name = "cgi-web-app"
   image_reference = "${var.login_server}/${var.acr_repo}:${var.acr_image_tag}"
 }
 
@@ -61,7 +62,7 @@ resource "azurerm_app_service" "flask-web-app" {
   app_settings = local.env_variables
 }
 
-resource "azurerm_app_service_slot" "slotDemo" {
+resource "azurerm_app_service_slot" "stagingSlot" {
     name                = "staging"
     location            = var.resource_group_location
     resource_group_name = var.resource_group_name
@@ -96,7 +97,7 @@ resource "azurerm_role_assignment" "acr_pull_assignment" {
 }
 
 resource "azurerm_role_assignment" "staging_acr_pull_assignment" {
-  principal_id         = azurerm_app_service_slot.slotDemo.identity[0].principal_id  
+  principal_id         = azurerm_app_service_slot.stagingSlot.identity[0].principal_id  
   role_definition_name = "AcrPull"
   scope                = var.acr_id  
 }

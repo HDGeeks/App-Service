@@ -24,17 +24,8 @@ provider "azurerm" {
 
 module "resource_group" {
   source = "./resource_group"
-  resource_group_name = "Serverless-Demo"
-  location            = "Germany West Central"
+  
 }
-
-# module "identity" {
-#   source = "./managed_identity"
-#   resource_group_name = module.resource_group.resource_group_name
-#   location            = module.resource_group.resource_group_location
-#   identity_name       = "container-identity"
-# }
-
 
 
 module "acr" {
@@ -42,9 +33,7 @@ module "acr" {
   source               = "./acr"
   resource_group_name   = module.resource_group.resource_group_name
   location              = module.resource_group.resource_group_location
-  acr_name              = "myacrregistry"
-
-  
+  //acr_name              = "myacrregistry"
 }
 
 module "webapp" {
@@ -71,5 +60,14 @@ output "user" {
   
 }
 
+output "web_app_id_and_roles" {
+  value = module.webapp.main_app_service_acr_pull_assignment
+  
+}
+
+output "staging_app_id_and_roles" {
+  value = module.webapp.staging_slot_acr_pull_assignment
+  
+}
 
 
